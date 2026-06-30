@@ -1,5 +1,7 @@
+import SystemBuilderPage from "./pages/SystemBuilderPage";
+
 function App() {
-  return <>hello from the bundle-builder!!</>;
+  return <SystemBuilderPage />;
 }
 
 export default App;
