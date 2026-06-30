@@ -6,15 +6,15 @@ type BundleSnapshot = {
   quantities: Record<string, number>;
   activeVariant: Record<string, string>;
   selectedPlanId: string | null;
-  expandedStep: string;
+  expandedStep: string | null;
 };
 
-type BundleState = BundleSnapshot & {
+export type BundleState = BundleSnapshot & {
   hasHydrated: boolean;
   setQuantity: (variantId: string, quantity: number) => void;
   setActiveVariant: (productId: string, variantId: string) => void;
   setExpandedStep: (stepId: string) => void;
-  advanceStep: (stepId: string) => void;
+  advanceStep: (stepNumber: number) => void;
   saveSystem: () => void;
   resetToDefaults: () => void;
 };
@@ -137,12 +137,11 @@ export const useBundleStore = create<BundleState>((set, get) => ({
   setExpandedStep: (stepId) => {
     set((state) => ({
       ...state,
-      expandedStep: stepId,
+      expandedStep: stepId === state.expandedStep ? null : stepId,
     }));
   },
-  advanceStep: (stepId) => {
-    const currentIndex = catalog.steps.findIndex((step) => step.id === stepId);
-    const nextStep = catalog.steps[currentIndex + 1];
+  advanceStep: (stepNumber) => {
+    const nextStep = catalog.steps[stepNumber];
 
     if (!nextStep) {
       return;

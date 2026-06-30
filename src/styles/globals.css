@@ -78,6 +78,21 @@ img {
   color: #6d6257;
 }
 
+.accordion-step__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms ease;
+}
+
+.accordion-step__panel.is-open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-step__panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
 .accordion-step__content {
   display: grid;
   gap: 16px;

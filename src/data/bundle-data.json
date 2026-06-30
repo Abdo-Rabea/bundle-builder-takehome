@@ -1,10 +1,4 @@
 {
-  "_notes": {
-    "pricing": "Each variant stores a per-unit price/compareAtPrice. Review-panel line totals and the grand total are computed as price * quantity at runtime — they are NOT copied verbatim from the mock, because the mock's own numbers aren't internally multiplicative for qty > 1 (e.g. Pan v3 shows $34.98/unit on the card at qty 2, but a $47.98 line total, which isn't 2 x 34.98). Treating per-unit price as the source of truth keeps 'total recalculates as quantities change' actually true.",
-    "placeholders": "Step 1 (cameras) and all Review-panel seed values (sensors, accessory, plan) are taken directly from the provided screenshot. Steps 2-4 product catalogs beyond what the Review panel already reveals are inferred placeholders (Figma file required login). Replace with real copy/pricing/images once available.",
-    "images": "Image paths are placeholders (/assets/products/*.png) — swap in real exports."
-  },
-
   "steps": [
     {
       "id": "cameras",

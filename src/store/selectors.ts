@@ -3,8 +3,13 @@ import {
   getProductForVariant,
   getVariantById,
   useBundleStore,
+  type BundleState,
 } from "./bundleStore";
 import type { ReviewLine, Totals } from "../types/catalog";
+
+// selector factory (now component and store separated)
+export const selectIsStepOpen = (stepId: string) => (state: BundleState) =>
+  state.expandedStep === stepId;
 
 export function selectSteps() {
   return catalog.steps;

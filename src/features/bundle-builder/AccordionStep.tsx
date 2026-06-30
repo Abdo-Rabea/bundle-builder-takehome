@@ -1,65 +1,78 @@
-import { catalog } from "../../services/apiBundleData";
-import {
-  countSelectedProducts,
-  selectProductsByStep,
-} from "../../store/selectors";
+import { useRef } from "react";
+import { selectIsStepOpen, selectProductsByStep } from "../../store/selectors";
 import { useBundleStore } from "../../store/bundleStore";
 import ProductCard from "./ProductCard";
+import AccordionStepHeader from "./AccordionStepHeader";
+import type { CatalogStep } from "../../types/catalog";
+import NextStepButton from "./NextStepButton";
+import AccordionStepPanel from "./AccordionStepPanel";
 
 type AccordionStepProps = {
-  stepId: string;
+  step: CatalogStep;
 };
 
-function AccordionStep({ stepId }: AccordionStepProps) {
-  const step = catalog.steps.find((entry) => entry.id === stepId);
+function AccordionStep({ step }: AccordionStepProps) {
+  const { id: stepId } = step;
+
+  const stepRef = useRef<HTMLElement | null>(null);
   const products = selectProductsByStep(stepId);
-  const selectedCount = useBundleStore((state) =>
-    countSelectedProducts(stepId, state.quantities),
-  );
-  const expandedStep = useBundleStore((state) => state.expandedStep);
-  const setExpandedStep = useBundleStore((state) => state.setExpandedStep);
-  const advanceStep = useBundleStore((state) => state.advanceStep);
+  const isOpen = useBundleStore(selectIsStepOpen(stepId));
+
+  // TODO: scroll to the begining of the step when expanded
+  // const SCROLL_TOP_OFFSET = 80;
+  // const SCROLL_CORRECTION_DELAY_MS = 180;
+  // useEffect(() => {
+  //   if (!isOpen || !stepRef.current) {
+  //     return;
+  //   }
+
+  //   let cancelled = false;
+
+  //   const scrollStepIntoView = (behavior: ScrollBehavior) => {
+  //     if (cancelled || !stepRef.current) {
+  //       return;
+  //     }
+
+  //     const top =
+  //       window.scrollY +
+  //       stepRef.current.getBoundingClientRect().top -
+  //       SCROLL_TOP_OFFSET;
+
+  //     window.scrollTo({
+  //       top: Math.max(0, top),
+  //       behavior,
+  //     });
+  //   };
+
+  //   const frameId = window.requestAnimationFrame(() => {
+  //     scrollStepIntoView("auto");
+  //   });
+
+  //   const correctionTimeout = window.setTimeout(() => {
+  //     scrollStepIntoView("auto");
+  //   }, SCROLL_CORRECTION_DELAY_MS);
+
+  //   return () => {
+  //     cancelled = true;
+  //     window.cancelAnimationFrame(frameId);
+  //     window.clearTimeout(correctionTimeout);
+  //   };
+  // }, [isOpen]);
 
   if (!step) {
     return null;
   }
-
-  const isOpen = expandedStep === step.id;
-
   return (
-    <section className="accordion-step">
-      <button
-        className="accordion-step__header"
-        onClick={() => setExpandedStep(step.id)}
-        type="button"
-      >
-        <div>
-          <div className="accordion-step__eyebrow">Step {step.stepNumber}</div>
-          <h2>{step.title}</h2>
-        </div>
-        <div className="accordion-step__meta">
-          <span>{selectedCount} selected</span>
-          <span>{isOpen ? "−" : "+"}</span>
-        </div>
-      </button>
+    <section className="accordion-step" ref={stepRef}>
+      <AccordionStepHeader step={step} />
 
-      {isOpen ? (
-        <div className="accordion-step__content">
-          {products.map((product) => (
-            <ProductCard key={product.id} productId={product.id} />
-          ))}
+      <AccordionStepPanel stepId={stepId}>
+        {products.map((product) => (
+          <ProductCard key={product.id} productId={product.id} />
+        ))}
 
-          {step.nextLabel ? (
-            <button
-              className="next-step"
-              onClick={() => advanceStep(step.id)}
-              type="button"
-            >
-              {step.nextLabel}
-            </button>
-          ) : null}
-        </div>
-      ) : null}
+        <NextStepButton step={step} />
+      </AccordionStepPanel>
     </section>
   );
 }
