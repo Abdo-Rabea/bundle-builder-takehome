@@ -16,11 +16,12 @@ function ReviewPanel() {
   const totals: Totals = useMemo(() => {
     const subtotal = lines.reduce((sum, line) => sum + line.lineTotal, 0);
     const savings = products
-      .flatMap((product) => product.variants)
+      .flatMap((product) =>
+        product.variants.map((variant) => ({ ...variant, discount: product.discount })),
+      )
       .reduce((sum, variant) => {
         const quantity = quantities[variant.id] ?? 0;
-        const compareAtPrice = variant.compareAtPrice ?? variant.price;
-        return sum + Math.max(0, compareAtPrice - variant.price) * quantity;
+        return sum + (variant.price * variant.discount / 100) * quantity;
       }, 0);
 
     return {

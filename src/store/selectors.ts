@@ -42,6 +42,7 @@ export function buildReviewLines(
         }
 
         const step = steps.find((entry) => entry.id === product.stepId);
+        const unitPrice = variant.price * (1 - product.discount / 100);
         return {
           productId: product.id,
           productName: product.name,
@@ -50,8 +51,8 @@ export function buildReviewLines(
           variantId: variant.id,
           variantLabel: variant.label,
           quantity,
-          unitPrice: variant.price,
-          lineTotal: variant.price * quantity,
+          unitPrice,
+          lineTotal: unitPrice * quantity,
         } satisfies ReviewLine;
       })
       .filter((line): line is ReviewLine => line !== null),
@@ -69,11 +70,12 @@ export function selectTotals(): Totals {
   const subtotal = lines.reduce((sum, line) => sum + line.lineTotal, 0);
   const { products, reviewExtras } = useCatalogStore.getState();
   const savings = products
-    .flatMap((product) => product.variants)
+    .flatMap((product) =>
+      product.variants.map((variant) => ({ ...variant, discount: product.discount })),
+    )
     .reduce((sum, variant) => {
       const quantity = useBundleStore.getState().quantities[variant.id] ?? 0;
-      const compareAtPrice = variant.compareAtPrice ?? variant.price;
-      return sum + Math.max(0, compareAtPrice - variant.price) * quantity;
+      return sum + (variant.price * variant.discount / 100) * quantity;
     }, 0);
 
   return {

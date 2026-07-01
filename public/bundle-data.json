@@ -49,16 +49,15 @@
       "name": "Wyze Cam v4",
       "description": "The clearest Wyze Cam ever made.",
       "learnMoreUrl": "#",
-      "badge": { "label": "Save 22%" },
       "image": "/assets/products/cam-v4.png",
+      "discount": 22,
       "variants": [
         {
           "id": "cam-v4-white",
           "label": "White",
           "swatch": "#f4f4f0",
           "image": "/assets/products/cam-v4-white.png",
-          "price": 27.98,
-          "compareAtPrice": 35.98,
+          "price": 35.98,
           "initialQuantity": 1,
           "isDefaultActive": true
         },
@@ -67,8 +66,7 @@
           "label": "Grey",
           "swatch": "#9b9b95",
           "image": "/assets/products/cam-v4-grey.png",
-          "price": 27.98,
-          "compareAtPrice": 35.98,
+          "price": 35.98,
           "initialQuantity": 0
         },
         {
@@ -76,8 +74,7 @@
           "label": "Black",
           "swatch": "#1c1c1c",
           "image": "/assets/products/cam-v4-black.png",
-          "price": 27.98,
-          "compareAtPrice": 35.98,
+          "price": 35.98,
           "initialQuantity": 0
         }
       ]
@@ -88,16 +85,15 @@
       "name": "Wyze Cam Pan v3",
       "description": "360° pan and 180° tilt security camera.",
       "learnMoreUrl": "#",
-      "badge": { "label": "Save 12%" },
       "image": "/assets/products/cam-pan-v3.png",
+      "discount": 12,
       "variants": [
         {
           "id": "cam-pan-v3-white",
           "label": "White",
           "swatch": "#f4f4f0",
           "image": "/assets/products/cam-pan-v3-white.png",
-          "price": 34.98,
-          "compareAtPrice": 39.98,
+          "price": 39.98,
           "initialQuantity": 2,
           "isDefaultActive": true
         },
@@ -106,8 +102,7 @@
           "label": "Black",
           "swatch": "#1c1c1c",
           "image": "/assets/products/cam-pan-v3-black.png",
-          "price": 34.98,
-          "compareAtPrice": 39.98,
+          "price": 39.98,
           "initialQuantity": 0
         }
       ]
@@ -118,16 +113,15 @@
       "name": "Wyze Cam Floodlight v2",
       "description": "2K floodlight camera with a 160° wide-angle view for your garage.",
       "learnMoreUrl": "#",
-      "badge": { "label": "Save 22%" },
       "image": "/assets/products/cam-floodlight-v2.png",
+      "discount": 22,
       "variants": [
         {
           "id": "cam-floodlight-v2-white",
           "label": "White",
           "swatch": "#f4f4f0",
           "image": "/assets/products/cam-floodlight-v2-white.png",
-          "price": 69.98,
-          "compareAtPrice": 89.98,
+          "price": 89.98,
           "initialQuantity": 0,
           "isDefaultActive": true
         },
@@ -136,8 +130,7 @@
           "label": "Black",
           "swatch": "#1c1c1c",
           "image": "/assets/products/cam-floodlight-v2-black.png",
-          "price": 69.98,
-          "compareAtPrice": 89.98,
+          "price": 89.98,
           "initialQuantity": 0
         }
       ]
@@ -148,8 +141,8 @@
       "name": "Wyze Duo Cam Doorbell",
       "description": "Two cameras. Two views. Double the porch protection.",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/cam-doorbell.png",
+      "discount": 0,
       "variants": [
         {
           "id": "cam-doorbell-default",
@@ -157,7 +150,6 @@
           "swatch": null,
           "image": "/assets/products/cam-doorbell.png",
           "price": 69.98,
-          "compareAtPrice": null,
           "initialQuantity": 0,
           "isDefaultActive": true
         }
@@ -169,8 +161,8 @@
       "name": "Wyze Battery Cam Pro",
       "description": "Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/battery-cam-pro.png",
+      "discount": 0,
       "variants": [
         {
           "id": "battery-cam-pro-white",
@@ -178,7 +170,6 @@
           "swatch": "#f4f4f0",
           "image": "/assets/products/battery-cam-pro-white.png",
           "price": 89.98,
-          "compareAtPrice": null,
           "initialQuantity": 0,
           "isDefaultActive": true
         },
@@ -188,7 +179,6 @@
           "swatch": "#1c1c1c",
           "image": "/assets/products/battery-cam-pro-black.png",
           "price": 89.98,
-          "compareAtPrice": null,
           "initialQuantity": 0
         }
       ]
@@ -200,17 +190,16 @@
       "name": "Cam Unlimited",
       "description": "Unlimited cloud storage and person detection for every camera on your account. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/plan-unlimited.png",
       "billingPeriod": "mo",
+      "discount": 0,
       "variants": [
         {
           "id": "plan-unlimited-default",
           "label": "Default",
           "swatch": null,
           "image": "/assets/products/plan-unlimited.png",
-          "price": 9.99,
-          "compareAtPrice": 12.99,
+          "price": 12.99,
           "initialQuantity": 1,
           "isDefaultActive": true
         }
@@ -222,17 +211,16 @@
       "name": "Cam Protect",
       "description": "14 days of rolling cloud storage for a single camera. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/plan-protect.png",
       "billingPeriod": "mo",
+      "discount": 0,
       "variants": [
         {
           "id": "plan-protect-default",
           "label": "Default",
           "swatch": null,
           "image": "/assets/products/plan-protect.png",
-          "price": 5.99,
-          "compareAtPrice": 7.99,
+          "price": 7.99,
           "initialQuantity": 0
         }
       ]
@@ -243,9 +231,9 @@
       "name": "No Plan",
       "description": "Local storage only, no cloud features. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/plan-none.png",
       "billingPeriod": "mo",
+      "discount": 0,
       "variants": [
         {
           "id": "plan-none-default",
@@ -253,7 +241,6 @@
           "swatch": null,
           "image": "/assets/products/plan-none.png",
           "price": 0,
-          "compareAtPrice": null,
           "initialQuantity": 0
         }
       ]
@@ -265,8 +252,8 @@
       "name": "Wyze Sense Motion Sensor",
       "description": "Detects motion and alerts you the instant something's up. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/sensor-motion.png",
+      "discount": 0,
       "variants": [
         {
           "id": "sensor-motion-default",
@@ -274,7 +261,6 @@
           "swatch": null,
           "image": "/assets/products/sensor-motion.png",
           "price": 29.99,
-          "compareAtPrice": null,
           "initialQuantity": 2,
           "isDefaultActive": true
         }
@@ -286,16 +272,15 @@
       "name": "Wyze Sense Hub (Required)",
       "description": "Connects all your sensors to the app. Required for sensors to function. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/sensor-hub.png",
+      "discount": 100,
       "variants": [
         {
           "id": "sensor-hub-default",
           "label": "Default",
           "swatch": null,
           "image": "/assets/products/sensor-hub.png",
-          "price": 0,
-          "compareAtPrice": 29.92,
+          "price": 29.92,
           "initialQuantity": 1,
           "isDefaultActive": true,
           "locked": true,
@@ -310,8 +295,8 @@
       "name": "Wyze Sense Entry Sensor",
       "description": "Know the instant a door or window opens. _(placeholder, not in screenshot)_",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/sensor-entry.png",
+      "discount": 0,
       "variants": [
         {
           "id": "sensor-entry-default",
@@ -319,7 +304,6 @@
           "swatch": null,
           "image": "/assets/products/sensor-entry.png",
           "price": 19.99,
-          "compareAtPrice": null,
           "initialQuantity": 0,
           "isDefaultActive": true
         }
@@ -332,8 +316,8 @@
       "name": "Wyze MicroSD Card (256GB)",
       "description": "Local backup storage for your camera footage. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/accessory-microsd.png",
+      "discount": 0,
       "variants": [
         {
           "id": "accessory-microsd-default",
@@ -341,7 +325,6 @@
           "swatch": null,
           "image": "/assets/products/accessory-microsd.png",
           "price": 20.98,
-          "compareAtPrice": null,
           "initialQuantity": 2,
           "isDefaultActive": true
         }
@@ -353,8 +336,8 @@
       "name": "Wyze Cam Spare Battery",
       "description": "A charged backup so your battery cams never go dark. _(placeholder, not in screenshot)_",
       "learnMoreUrl": "#",
-      "badge": null,
       "image": "/assets/products/accessory-battery.png",
+      "discount": 0,
       "variants": [
         {
           "id": "accessory-extra-battery-default",
@@ -362,7 +345,6 @@
           "swatch": null,
           "image": "/assets/products/accessory-battery.png",
           "price": 24.99,
-          "compareAtPrice": null,
           "initialQuantity": 0,
           "isDefaultActive": true
         }

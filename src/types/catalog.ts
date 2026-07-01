@@ -17,7 +17,6 @@ export type CatalogVariant = {
   swatch: string | null;
   image: string;
   price: number;
-  compareAtPrice: number | null;
   initialQuantity: number;
   isDefaultActive?: boolean;
   locked?: boolean;
@@ -31,8 +30,8 @@ export type CatalogProduct = {
   name: string;
   description: string;
   learnMoreUrl: string;
-  badge: { label: string } | null;
   image: string;
+  discount: number;
   billingPeriod?: string;
   variants: CatalogVariant[];
 };

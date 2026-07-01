@@ -1,19 +1,19 @@
 import QuantityStepper from "../../components/QuantityStepper/QuantityStepper";
-import { useCatalogStore } from "../../store/catalogStore";
 import { useBundleStore } from "../../store/bundleStore";
 import VariantSelector from "./VariantSelector";
+import type { CatalogProduct } from "../../types/catalog";
 
 type ProductCardProps = {
-  productId: string;
+  product: CatalogProduct;
 };
 
-function ProductCard({ productId }: ProductCardProps) {
+function ProductCard({ product }: ProductCardProps) {
   const setQuantity = useBundleStore((state) => state.setQuantity);
   const setActiveVariant = useBundleStore((state) => state.setActiveVariant);
-  const products = useCatalogStore((s) => s.products);
-  const product = products.find((entry) => entry.id === productId);
+
   const activeVariantId = useBundleStore(
-    (state) => state.activeVariant[productId] ?? product?.variants[0]?.id ?? "",
+    (state) =>
+      state.activeVariant[product.id] ?? product?.variants[0]?.id ?? "",
   );
   const activeVariant =
     product?.variants.find((variant) => variant.id === activeVariantId) ??
@@ -41,8 +41,8 @@ function ProductCard({ productId }: ProductCardProps) {
       <div className="product-card__body">
         <div className="product-card__header">
           <h3>{product.name}</h3>
-          {product.badge ? (
-            <span className="badge">{product.badge.label}</span>
+          {product.discount > 0 ? (
+            <span className="badge">Save {product.discount}%</span>
           ) : null}
         </div>
 
