@@ -16,12 +16,12 @@ function AccordionStepHeader({ step }: { step: CatalogStep }) {
       type="button"
     >
       <div>
-        <div className="accordion-step__eyebrow">Step {step.stepNumber}</div>
+        <div className="accordion-step__eyebrow">Step {step.stepNumber} of 4</div>
         <h2>{step.title}</h2>
       </div>
       <div className="accordion-step__meta">
         <span>{selectedCount} selected</span>
-        <span>{isOpen ? "−" : "+"}</span>
+        <span className="accordion-step__arrow">{isOpen ? "\u25B2" : "\u25BC"}</span>
       </div>
     </button>
   );

@@ -28,6 +28,12 @@ function VariantSelector({
           onClick={() => onSelectVariant(variant.id)}
           type="button"
         >
+          {variant.swatch ? (
+            <span
+              className="variant-chip__swatch"
+              style={{ backgroundColor: variant.swatch }}
+            />
+          ) : null}
           {variant.label}
         </button>
       ))}

@@ -32,6 +32,12 @@ function ProductCard({ product }: ProductCardProps) {
     return null;
   }
 
+  const originalPrice = activeVariant.price;
+  const hasDiscount = product.discount > 0;
+  const salePrice = hasDiscount
+    ? originalPrice * (1 - product.discount / 100)
+    : originalPrice;
+
   return (
     <article className={`product-card${isSelected ? " is-selected" : ""}`}>
       <div className="product-card__media" aria-hidden="true">
@@ -41,12 +47,16 @@ function ProductCard({ product }: ProductCardProps) {
       <div className="product-card__body">
         <div className="product-card__header">
           <h3>{product.name}</h3>
-          {product.discount > 0 ? (
+          {hasDiscount ? (
             <span className="badge">Save {product.discount}%</span>
           ) : null}
         </div>
 
         <p>{product.description}</p>
+
+        <a className="product-card__learn-more" href={product.learnMoreUrl}>
+          Learn More
+        </a>
 
         <VariantSelector
           activeVariantId={activeVariant.id}
@@ -57,7 +67,6 @@ function ProductCard({ product }: ProductCardProps) {
         />
 
         <div className="product-card__footer">
-          <a href={product.learnMoreUrl}>Learn More</a>
           <QuantityStepper
             disabled={Boolean(activeVariant.locked)}
             max={activeVariant.maxQuantity ?? Number.POSITIVE_INFINITY}
@@ -65,6 +74,16 @@ function ProductCard({ product }: ProductCardProps) {
             onChange={(nextValue) => setQuantity(activeVariant.id, nextValue)}
             value={activeQuantity}
           />
+          <div className="product-card__prices">
+            {hasDiscount ? (
+              <span className="product-card__price--original">
+                ${originalPrice.toFixed(2)}
+              </span>
+            ) : null}
+            <span className="product-card__price--sale">
+              ${salePrice.toFixed(2)}
+            </span>
+          </div>
         </div>
       </div>
     </article>
