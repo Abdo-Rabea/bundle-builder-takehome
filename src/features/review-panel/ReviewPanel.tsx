@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { catalog } from "../../services/apiBundleData";
+import { useCatalogStore } from "../../store/catalogStore";
 import { buildReviewLines } from "../../store/selectors";
 import { useBundleStore } from "../../store/bundleStore";
 import type { Totals } from "../../types/catalog";
@@ -9,10 +9,13 @@ import ReviewSummary from "./ReviewSummary";
 function ReviewPanel() {
   const quantities = useBundleStore((state) => state.quantities);
   const saveSystem = useBundleStore((state) => state.saveSystem);
+  const steps = useCatalogStore((s) => s.steps);
+  const products = useCatalogStore((s) => s.products);
+  const reviewExtras = useCatalogStore((s) => s.reviewExtras);
   const lines = useMemo(() => buildReviewLines(quantities), [quantities]);
   const totals: Totals = useMemo(() => {
     const subtotal = lines.reduce((sum, line) => sum + line.lineTotal, 0);
-    const savings = catalog.products
+    const savings = products
       .flatMap((product) => product.variants)
       .reduce((sum, variant) => {
         const quantity = quantities[variant.id] ?? 0;
@@ -23,12 +26,12 @@ function ReviewPanel() {
     return {
       subtotal,
       savings,
-      shipping: catalog.reviewExtras.shipping.price,
-      grandTotal: subtotal + catalog.reviewExtras.shipping.price,
+      shipping: reviewExtras.shipping.price,
+      grandTotal: subtotal + reviewExtras.shipping.price,
     };
-  }, [lines, quantities]);
+  }, [lines, quantities, products, reviewExtras]);
 
-  const reviewLinesByCategory = catalog.steps.reduce<
+  const reviewLinesByCategory = steps.reduce<
     Record<string, typeof lines>
   >((accumulator, step) => {
     accumulator[step.reviewCategory] = lines.filter(
@@ -41,7 +44,7 @@ function ReviewPanel() {
     <aside className="review-panel">
       <h2>Your security system</h2>
 
-      {catalog.steps.map((step) => {
+      {steps.map((step) => {
         const stepLines = reviewLinesByCategory[step.reviewCategory] ?? [];
 
         return (

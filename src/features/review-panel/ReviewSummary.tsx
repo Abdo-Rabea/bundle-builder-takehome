@@ -1,4 +1,4 @@
-import { catalog } from "../../services/apiBundleData";
+import { useCatalogStore } from "../../store/catalogStore";
 import type { Totals } from "../../types/catalog";
 
 type ReviewSummaryProps = {
@@ -7,20 +7,22 @@ type ReviewSummaryProps = {
 };
 
 function ReviewSummary({ totals, onSave }: ReviewSummaryProps) {
+  const reviewExtras = useCatalogStore((s) => s.reviewExtras);
+
   return (
     <div className="review-summary">
       <div className="review-summary__row">
-        <span>{catalog.reviewExtras.shipping.label}</span>
+        <span>{reviewExtras.shipping.label}</span>
         <span>
           <s>
             $
-            {catalog.reviewExtras.shipping.compareAtPrice?.toFixed(2) ?? "0.00"}
+            {reviewExtras.shipping.compareAtPrice?.toFixed(2) ?? "0.00"}
           </s>{" "}
           {totals.shipping.toFixed(2)}
         </span>
       </div>
       <div className="review-summary__row">
-        <span>{catalog.reviewExtras.guarantee.label}</span>
+        <span>{reviewExtras.guarantee.label}</span>
         <span>Included</span>
       </div>
       <div className="review-summary__row">
@@ -36,7 +38,7 @@ function ReviewSummary({ totals, onSave }: ReviewSummaryProps) {
         <span>${totals.grandTotal.toFixed(2)}</span>
       </div>
       <button onClick={onSave} type="button">
-        {catalog.reviewExtras.saveForLaterLabel}
+        {reviewExtras.saveForLaterLabel}
       </button>
     </div>
   );

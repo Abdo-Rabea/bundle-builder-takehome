@@ -1,6 +1,7 @@
 import { useRef } from "react";
-import { selectIsStepOpen, selectProductsByStep } from "../../store/selectors";
-import { useBundleStore } from "../../store/bundleStore";
+import { useShallow } from "zustand/react/shallow";
+import { selectProductsByStep } from "../../store/selectors";
+import { useCatalogStore } from "../../store/catalogStore";
 import ProductCard from "./ProductCard";
 import AccordionStepHeader from "./AccordionStepHeader";
 import type { CatalogStep } from "../../types/catalog";
@@ -13,12 +14,10 @@ type AccordionStepProps = {
 
 function AccordionStep({ step }: AccordionStepProps) {
   const { id: stepId } = step;
-
-  const stepRef = useRef<HTMLElement | null>(null);
-  const products = selectProductsByStep(stepId);
-  const isOpen = useBundleStore(selectIsStepOpen(stepId));
+  const products = useCatalogStore(useShallow(selectProductsByStep(stepId)));
 
   // TODO: scroll to the begining of the step when expanded
+  const stepRef = useRef<HTMLElement | null>(null);
   // const SCROLL_TOP_OFFSET = 80;
   // const SCROLL_CORRECTION_DELAY_MS = 180;
   // useEffect(() => {
@@ -59,9 +58,6 @@ function AccordionStep({ step }: AccordionStepProps) {
   //   };
   // }, [isOpen]);
 
-  if (!step) {
-    return null;
-  }
   return (
     <section className="accordion-step" ref={stepRef}>
       <AccordionStepHeader step={step} />

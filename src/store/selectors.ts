@@ -1,4 +1,4 @@
-import { catalog } from "../services/apiBundleData";
+import { useCatalogStore, type CatalogState } from "./catalogStore";
 import {
   getProductForVariant,
   getVariantById,
@@ -11,19 +11,20 @@ import type { ReviewLine, Totals } from "../types/catalog";
 export const selectIsStepOpen = (stepId: string) => (state: BundleState) =>
   state.expandedStep === stepId;
 
-export function selectSteps() {
-  return catalog.steps;
-}
+export const selectProductsByStep = (stepId: string) => (state: CatalogState) =>
+  state.products.filter((product) => product.stepId === stepId);
 
-export function selectProductsByStep(stepId: string) {
-  return catalog.products.filter((product) => product.stepId === stepId);
+export function selectProductsByStepOLDV(stepId: string) {
+  return useCatalogStore
+    .getState()
+    .products.filter((product) => product.stepId === stepId);
 }
 
 export function countSelectedProducts(
   stepId: string,
   quantities: Record<string, number>,
 ) {
-  return selectProductsByStep(stepId).filter((product) =>
+  return selectProductsByStepOLDV(stepId).filter((product) =>
     product.variants.some((variant) => (quantities[variant.id] ?? 0) > 0),
   ).length;
 }
@@ -31,7 +32,8 @@ export function countSelectedProducts(
 export function buildReviewLines(
   quantities: Record<string, number>,
 ): ReviewLine[] {
-  return catalog.products.flatMap((product) =>
+  const { products, steps } = useCatalogStore.getState();
+  return products.flatMap((product) =>
     product.variants
       .map((variant) => {
         const quantity = quantities[variant.id] ?? 0;
@@ -39,7 +41,7 @@ export function buildReviewLines(
           return null;
         }
 
-        const step = catalog.steps.find((entry) => entry.id === product.stepId);
+        const step = steps.find((entry) => entry.id === product.stepId);
         return {
           productId: product.id,
           productName: product.name,
@@ -65,7 +67,8 @@ export function selectReviewLines(): ReviewLine[] {
 export function selectTotals(): Totals {
   const lines = selectReviewLines();
   const subtotal = lines.reduce((sum, line) => sum + line.lineTotal, 0);
-  const savings = catalog.products
+  const { products, reviewExtras } = useCatalogStore.getState();
+  const savings = products
     .flatMap((product) => product.variants)
     .reduce((sum, variant) => {
       const quantity = useBundleStore.getState().quantities[variant.id] ?? 0;
@@ -76,14 +79,16 @@ export function selectTotals(): Totals {
   return {
     subtotal,
     savings,
-    shipping: catalog.reviewExtras.shipping.price,
-    grandTotal: subtotal + catalog.reviewExtras.shipping.price,
+    shipping: reviewExtras.shipping.price,
+    grandTotal: subtotal + reviewExtras.shipping.price,
   };
 }
 
 export function selectProductState(productId: string) {
   const state = useBundleStore.getState();
-  const product = catalog.products.find((entry) => entry.id === productId);
+  const product = useCatalogStore
+    .getState()
+    .products.find((entry) => entry.id === productId);
   const activeVariantId =
     state.activeVariant[productId] ?? product?.variants[0]?.id ?? "";
   const activeVariant = getVariantById(activeVariantId);

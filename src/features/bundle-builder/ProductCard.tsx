@@ -1,5 +1,5 @@
 import QuantityStepper from "../../components/QuantityStepper/QuantityStepper";
-import { catalog } from "../../services/apiBundleData";
+import { useCatalogStore } from "../../store/catalogStore";
 import { useBundleStore } from "../../store/bundleStore";
 import VariantSelector from "./VariantSelector";
 
@@ -10,7 +10,8 @@ type ProductCardProps = {
 function ProductCard({ productId }: ProductCardProps) {
   const setQuantity = useBundleStore((state) => state.setQuantity);
   const setActiveVariant = useBundleStore((state) => state.setActiveVariant);
-  const product = catalog.products.find((entry) => entry.id === productId);
+  const products = useCatalogStore((s) => s.products);
+  const product = products.find((entry) => entry.id === productId);
   const activeVariantId = useBundleStore(
     (state) => state.activeVariant[productId] ?? product?.variants[0]?.id ?? "",
   );

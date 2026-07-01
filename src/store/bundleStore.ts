@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { catalog, getDefaultExpandedStep } from "../services/apiBundleData";
+import { useCatalogStore } from "./catalogStore";
 import type { CatalogProduct, CatalogVariant } from "../types/catalog";
 
 type BundleSnapshot = {
@@ -26,7 +26,7 @@ function buildDefaultSnapshot(): BundleSnapshot {
   const activeVariant: Record<string, string> = {};
   let selectedPlanId: string | null = null;
 
-  catalog.products.forEach((product) => {
+  useCatalogStore.getState().products.forEach((product) => {
     const defaultVariant =
       product.variants.find((variant) => variant.isDefaultActive) ??
       product.variants[0];
@@ -47,7 +47,7 @@ function buildDefaultSnapshot(): BundleSnapshot {
     quantities,
     activeVariant,
     selectedPlanId,
-    expandedStep: getDefaultExpandedStep(),
+    expandedStep: useCatalogStore.getState().getDefaultExpandedStep(),
   };
 }
 
@@ -69,7 +69,7 @@ function readSavedSnapshot(): BundleSnapshot | null {
 }
 
 function getProductByVariantId(variantId: string) {
-  return catalog.products.find((product) =>
+  return useCatalogStore.getState().products.find((product) =>
     product.variants.some((variant) => variant.id === variantId),
   );
 }
@@ -91,11 +91,11 @@ function setVariantQuantitySnapshot(
   return nextQuantities;
 }
 
-const defaultSnapshot = buildDefaultSnapshot();
-const initialSnapshot = readSavedSnapshot() ?? defaultSnapshot;
-
 export const useBundleStore = create<BundleState>((set, get) => ({
-  ...initialSnapshot,
+  quantities: {},
+  activeVariant: {},
+  selectedPlanId: null,
+  expandedStep: null,
   hasHydrated: false,
   setQuantity: (variantId, quantity) => {
     set((state) => {
@@ -141,7 +141,7 @@ export const useBundleStore = create<BundleState>((set, get) => ({
     }));
   },
   advanceStep: (stepNumber) => {
-    const nextStep = catalog.steps[stepNumber];
+    const nextStep = useCatalogStore.getState().steps[stepNumber];
 
     if (!nextStep) {
       return;
@@ -168,6 +168,10 @@ export const useBundleStore = create<BundleState>((set, get) => ({
     window.localStorage.setItem(storageKey, JSON.stringify(payload));
   },
   resetToDefaults: () => {
+    const { products } = useCatalogStore.getState();
+    if (products.length === 0) {
+      return;
+    }
     set(() => ({
       ...buildDefaultSnapshot(),
       hasHydrated: true,
@@ -180,17 +184,22 @@ export function hydrateBundleStore() {
     return;
   }
 
+  const { products, steps } = useCatalogStore.getState();
+  if (products.length === 0 || steps.length === 0) {
+    return;
+  }
+
   const savedSnapshot = readSavedSnapshot();
   if (savedSnapshot) {
     useBundleStore.setState({ ...savedSnapshot, hasHydrated: true });
     return;
   }
 
-  useBundleStore.setState({ ...defaultSnapshot, hasHydrated: true });
+  useBundleStore.setState({ ...buildDefaultSnapshot(), hasHydrated: true });
 }
 
 export function getVariantById(variantId: string): CatalogVariant | undefined {
-  return catalog.products
+  return useCatalogStore.getState().products
     .flatMap((product) => product.variants)
     .find((variant) => variant.id === variantId);
 }
