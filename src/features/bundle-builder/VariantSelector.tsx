@@ -34,6 +34,11 @@ function VariantSelector({
               style={{ backgroundColor: variant.swatch }}
             />
           ) : null}
+          <img
+            src={variant.image}
+            alt={variant.label}
+            className="variant-chip__image"
+          />
           {variant.label}
         </button>
       ))}

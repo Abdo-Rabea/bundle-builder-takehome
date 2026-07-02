@@ -72,6 +72,7 @@ export type ReviewLine = {
   quantity: number;
   unitPrice: number;
   lineTotal: number;
+  billingPeriod?: string;
 };
 
 export type Totals = {

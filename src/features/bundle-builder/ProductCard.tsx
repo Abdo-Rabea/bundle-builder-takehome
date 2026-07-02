@@ -1,4 +1,4 @@
-import QuantityStepper from "../../components/QuantityStepper/QuantityStepper";
+import QuantityStepper from "../../ui/QuantityStepper";
 import { useBundleStore } from "../../store/bundleStore";
 import VariantSelector from "./VariantSelector";
 import type { CatalogProduct } from "../../types/catalog";
@@ -41,7 +41,7 @@ function ProductCard({ product }: ProductCardProps) {
   return (
     <article className={`product-card${isSelected ? " is-selected" : ""}`}>
       <div className="product-card__media" aria-hidden="true">
-        <img alt="" src={activeVariant.image} />
+        <img alt="" src={product.image} />
       </div>
 
       <div className="product-card__body">

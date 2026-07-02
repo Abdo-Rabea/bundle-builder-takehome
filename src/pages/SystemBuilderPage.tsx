@@ -67,7 +67,7 @@ function SystemBuilderPage() {
 
   return (
     <main className="system-builder-page">
-      <section>
+      <section className="system-builder-page__main">
         <BundleBuilder />
       </section>
       <ReviewPanel />

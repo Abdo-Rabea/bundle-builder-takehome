@@ -53,6 +53,7 @@ export function buildReviewLines(
           quantity,
           unitPrice,
           lineTotal: unitPrice * quantity,
+          billingPeriod: product.billingPeriod,
         } satisfies ReviewLine;
       })
       .filter((line): line is ReviewLine => line !== null),
@@ -71,11 +72,14 @@ export function selectTotals(): Totals {
   const { products, reviewExtras } = useCatalogStore.getState();
   const savings = products
     .flatMap((product) =>
-      product.variants.map((variant) => ({ ...variant, discount: product.discount })),
+      product.variants.map((variant) => ({
+        ...variant,
+        discount: product.discount,
+      })),
     )
     .reduce((sum, variant) => {
       const quantity = useBundleStore.getState().quantities[variant.id] ?? 0;
-      return sum + (variant.price * variant.discount / 100) * quantity;
+      return sum + ((variant.price * variant.discount) / 100) * quantity;
     }, 0);
 
   return {
