@@ -6,7 +6,7 @@ Configure your security system step by step — pick cameras, a plan, sensors, a
 
 [Live Demo link](https://bundle-builder-takehome.vercel.app/)
 
-[![Screenshot](./public/screenshot.png)](https://bundle-builder-takehome.vercel.app/)
+[![Screenshot](./public/Screenshot.png)](https://bundle-builder-takehome.vercel.app/)
 
 ## Quick Start
 
