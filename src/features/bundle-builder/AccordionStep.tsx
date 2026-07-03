@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { selectIsStepOpen, selectProductsByStep } from "../../store/selectors";
 import { useCatalogStore } from "../../store/catalogStore";
@@ -8,7 +8,8 @@ import type { CatalogStep } from "../../types/catalog";
 import NextStepButton from "./NextStepButton";
 import AccordionStepPanel from "./AccordionStepPanel";
 import { useBundleStore } from "../../store/bundleStore";
-
+const SCROLL_TOP_OFFSET = 50;
+const SCROLL_CORRECTION_DELAY_MS = 200;
 type AccordionStepProps = {
   step: CatalogStep;
 };
@@ -17,47 +18,45 @@ function AccordionStep({ step }: AccordionStepProps) {
   const { id: stepId } = step;
   const products = useCatalogStore(useShallow(selectProductsByStep(stepId)));
   const isOpen = useBundleStore(useShallow(selectIsStepOpen(step.id)));
-  // TODO: scroll to the begining of the step when expanded
+
   const stepRef = useRef<HTMLElement | null>(null);
-  // const SCROLL_TOP_OFFSET = 80;
-  // const SCROLL_CORRECTION_DELAY_MS = 180;
-  // useEffect(() => {
-  //   if (!isOpen || !stepRef.current) {
-  //     return;
-  //   }
+  useEffect(() => {
+    if (!isOpen || !stepRef.current) {
+      return;
+    }
 
-  //   let cancelled = false;
+    let cancelled = false;
 
-  //   const scrollStepIntoView = (behavior: ScrollBehavior) => {
-  //     if (cancelled || !stepRef.current) {
-  //       return;
-  //     }
+    const scrollStepIntoView = (behavior: ScrollBehavior) => {
+      if (cancelled || !stepRef.current) {
+        return;
+      }
 
-  //     const top =
-  //       window.scrollY +
-  //       stepRef.current.getBoundingClientRect().top -
-  //       SCROLL_TOP_OFFSET;
+      const top =
+        window.scrollY +
+        stepRef.current.getBoundingClientRect().top -
+        SCROLL_TOP_OFFSET;
 
-  //     window.scrollTo({
-  //       top: Math.max(0, top),
-  //       behavior,
-  //     });
-  //   };
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior,
+      });
+    };
 
-  //   const frameId = window.requestAnimationFrame(() => {
-  //     scrollStepIntoView("auto");
-  //   });
+    // const frameId = window.requestAnimationFrame(() => {
+    //   scrollStepIntoView("auto");
+    // });
 
-  //   const correctionTimeout = window.setTimeout(() => {
-  //     scrollStepIntoView("auto");
-  //   }, SCROLL_CORRECTION_DELAY_MS);
+    const correctionTimeout = window.setTimeout(() => {
+      scrollStepIntoView("smooth");
+    }, SCROLL_CORRECTION_DELAY_MS);
 
-  //   return () => {
-  //     cancelled = true;
-  //     window.cancelAnimationFrame(frameId);
-  //     window.clearTimeout(correctionTimeout);
-  //   };
-  // }, [isOpen]);
+    return () => {
+      cancelled = true;
+      // window.cancelAnimationFrame(frameId);
+      window.clearTimeout(correctionTimeout);
+    };
+  }, [isOpen]);
 
   return (
     <section
