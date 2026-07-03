@@ -5,7 +5,7 @@ import { useBundleStore } from "../../store/bundleStore";
 import type { Totals } from "../../types/catalog";
 import ReviewLine from "./ReviewLine";
 import ReviewSummary from "./ReviewSummary";
-
+import fastShippingIcon from "/assets/ui/fast-shipping-icon.svg";
 function ReviewPanel() {
   const quantities = useBundleStore((state) => state.quantities);
   const saveSystem = useBundleStore((state) => state.saveSystem);
@@ -81,6 +81,20 @@ function ReviewPanel() {
               </section>
             );
           })}
+          <div className="review-summary__shipping">
+            <div className="review-summary__shipping-icon">
+              <img src={fastShippingIcon} alt="Shipping Icon" />
+            </div>
+            <div className="review-summary__shipping-details">
+              <span className="review-summary__shipping-label">
+                Fast Shipping
+              </span>
+            </div>
+            <div className="review-summary__shipping-prices">
+              <span className="review-summary__shipping-compare">$5.99</span>
+              <span className="review-summary__shipping-price">FREE</span>
+            </div>
+          </div>
         </div>
 
         <div className="review-panel__sidebar">

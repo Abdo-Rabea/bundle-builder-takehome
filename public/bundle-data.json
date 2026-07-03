@@ -361,7 +361,7 @@
     },
     "guarantee": {
       "label": "100% Wyze satisfaction guarantee",
-      "icon": "badge-check"
+      "icon": "satisfaction-badge.svg"
     },
     "financing": { "label": "as low as", "months": 12 },
     "checkoutLabel": "Checkout",
