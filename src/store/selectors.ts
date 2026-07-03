@@ -53,7 +53,6 @@ export function buildReviewLines(
           quantity,
           unitPrice,
           lineTotal: unitPrice * quantity,
-          billingPeriod: product.billingPeriod,
         } satisfies ReviewLine;
       })
       .filter((line): line is ReviewLine => line !== null),

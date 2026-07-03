@@ -21,8 +21,8 @@ function QuantityStepper({
         type="button"
       >
         <svg
-          width="8"
-          height="2"
+          width="12"
+          height="3"
           viewBox="0 0 8 2"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -40,8 +40,8 @@ function QuantityStepper({
         type="button"
       >
         <svg
-          width="8"
-          height="8"
+          width="12"
+          height="12"
           viewBox="0 0 8 8"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
