@@ -6,13 +6,11 @@ function NextStepButton({ step }: { step: CatalogStep }) {
 
   return (
     step.nextLabel && (
-      <button
-        className="next-step"
-        onClick={() => advanceStep(step.stepNumber)}
-        type="button"
-      >
-        {step.nextLabel}
-      </button>
+      <div className="next-step">
+        <button onClick={() => advanceStep(step.stepNumber)} type="button">
+          {step.nextLabel}
+        </button>
+      </div>
     )
   );
 }

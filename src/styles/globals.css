@@ -1,4 +1,9 @@
 @font-face {
+  font-family: "Custom-Gilroy";
+  src: url("/fonts/Gilroy-Light.otf") format("opentype");
+}
+
+/* @font-face {
   font-family: "Gilroy";
   src: url("/fonts/Gilroy-Medium.woff2") format("woff2");
   font-weight: 500;
@@ -12,7 +17,7 @@
   font-weight: 600;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -27,7 +32,7 @@ body,
 body {
   margin: 0;
   font-family:
-    "Gilroy",
+    "Custom-Gilroy",
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
@@ -35,7 +40,7 @@ body {
     Helvetica,
     Arial,
     sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   color: #1a1a2e;
 }
 
@@ -204,10 +209,6 @@ img {
   gap: 14px;
 }
 
-.accordion-step__content > .next-step {
-  grid-column: 1 / -1;
-}
-
 .product-card {
   display: flex;
   flex-direction: column;
@@ -226,15 +227,15 @@ img {
 }
 
 .product-card.is-selected {
-  border-color: #4e2fd2;
-  box-shadow: 0 0 0 1px #4e2fd2;
+  border: 2px solid rgba(78, 47, 210, 0.7);
+  border-radius: 10px;
 }
 
 .product-card__media {
-  border-radius: 10px;
+  /* border-radius: 10px; */
   overflow: hidden;
   background: #ffffff;
-  border: 1px solid #eef0f6;
+  /* border: 1px solid #eef0f6; */
   width: 100%;
   height: 120px;
   display: flex;
@@ -242,12 +243,27 @@ img {
   justify-content: center;
   flex-shrink: 0;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .product-card__media img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+.badge {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 2px 8px;
+  text-align: center;
+  /* core/wyze purple */
+  background: #4e2fd2;
+  border-radius: 10px;
+  color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .product-card__body {
@@ -307,33 +323,20 @@ img {
 .product-card__prices {
   display: flex;
   align-items: baseline;
-  gap: 4px;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .product-card__price--original {
   text-decoration: line-through;
-  color: #b0b2c8;
-  font-size: 11px;
+  color: #a5a7c2;
+  font-size: 12px;
 }
 
 .product-card__price--sale {
   color: #4e2fd2;
   font-weight: 700;
   font-size: 13px;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 8px;
-  border-radius: 6px;
-  background: #4e2fd2;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 700;
-  white-space: nowrap;
-  letter-spacing: 0.02em;
-  flex-shrink: 0;
 }
 
 .variant-row {
@@ -562,12 +565,10 @@ img {
 
 .review-line__prices {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-  min-width: 80px;
-  justify-content: flex-end;
+  align-items: baseline;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-basis: 56px;
 }
 
 .review-line__price--original {
@@ -795,24 +796,34 @@ img {
 }
 
 .next-step {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 10px 24px;
+  margin-top: 8px;
+  grid-column: 1 / -1;
+  text-align: center;
+}
+.next-step button {
+  /* width: 242px;
+height: 39px; */
+  font-family: inherit;
+  font-weight: 600;
+  padding: 5px 24px;
   border: 1px solid #4e2fd2;
-  border-radius: 999px;
+  border-radius: 7px;
   background: transparent;
   color: #4e2fd2;
   font-size: 14px;
-  font-weight: 500;
+
   cursor: pointer;
   transition: all 0.2s;
-  margin-top: 8px;
+  margin-bottom: 2px;
 }
+/* Button dialog paints */
 
-.next-step:hover {
-  background: #f0eefe;
+.next-step button:hover {
+  transform: translateY(1px);
+  -webkit-transform: translateY(1px);
+  -moz-transform: translateY(1px);
+  -ms-transform: translateY(1px);
+  -o-transform: translateY(1px);
 }
 
 .review-panel__badge {

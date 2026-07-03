@@ -70,7 +70,6 @@ function AccordionStep({ step }: AccordionStepProps) {
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-
         <NextStepButton step={step} />
       </AccordionStepPanel>
     </section>

@@ -2,7 +2,6 @@ import { useBundleStore } from "../../store/bundleStore";
 import { useCatalogStore } from "../../store/catalogStore";
 import { countSelectedProducts, selectIsStepOpen } from "../../store/selectors";
 import type { CatalogStep } from "../../types/catalog";
-import livestreamIcon from "../../assets/livestream-icon.svg";
 function AccordionStepHeader({ step }: { step: CatalogStep }) {
   const selectedCount = useBundleStore((state) =>
     countSelectedProducts(step.id, state.quantities),

@@ -190,7 +190,7 @@
       "name": "Cam Unlimited",
       "description": "Unlimited cloud storage and person detection for every camera on your account. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "image": "/assets/products/plan-unlimited.png",
+      "image": "/assets/products/plan.svg",
       "billingPeriod": "mo",
       "discount": 0,
       "variants": [
@@ -198,7 +198,7 @@
           "id": "plan-unlimited-default",
           "label": "Default",
           "swatch": null,
-          "image": "/assets/products/plan-unlimited.png",
+          "image": "/assets/products/plan.svg",
           "price": 12.99,
           "initialQuantity": 1,
           "isDefaultActive": true
@@ -208,10 +208,10 @@
     {
       "id": "plan-protect",
       "stepId": "plan",
-      "name": "Cam Protect",
+      "name": "Cam Plus",
       "description": "14 days of rolling cloud storage for a single camera. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "image": "/assets/products/plan-protect.png",
+      "image": "/assets/products/plan.svg",
       "billingPeriod": "mo",
       "discount": 0,
       "variants": [
@@ -219,28 +219,28 @@
           "id": "plan-protect-default",
           "label": "Default",
           "swatch": null,
-          "image": "/assets/products/plan-protect.png",
+          "image": "/assets/products/plan.svg",
           "price": 7.99,
           "initialQuantity": 0
         }
       ]
     },
     {
-      "id": "plan-none",
+      "id": "plan-unlimited-pro",
       "stepId": "plan",
-      "name": "No Plan",
-      "description": "Local storage only, no cloud features. _(placeholder copy)_",
+      "name": "Cam Unlimited Pro",
+      "description": "Unlimited cloud storage and person detection for every camera on your account. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "image": "/assets/products/plan-none.png",
+      "image": "/assets/products/plan.svg",
       "billingPeriod": "mo",
       "discount": 0,
       "variants": [
         {
-          "id": "plan-none-default",
+          "id": "plan-unlimited-pro-default",
           "label": "Default",
           "swatch": null,
-          "image": "/assets/products/plan-none.png",
-          "price": 0,
+          "image": "/assets/products/plan.svg",
+          "price": 19.99,
           "initialQuantity": 0
         }
       ]
@@ -252,14 +252,14 @@
       "name": "Wyze Sense Motion Sensor",
       "description": "Detects motion and alerts you the instant something's up. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "image": "/assets/products/sensor-motion.png",
+      "image": "/assets/products/sensor-motion.webp",
       "discount": 0,
       "variants": [
         {
           "id": "sensor-motion-default",
           "label": "Default",
           "swatch": null,
-          "image": "/assets/products/sensor-motion.png",
+          "image": "/assets/products/sensor-motion.webp",
           "price": 29.99,
           "initialQuantity": 2,
           "isDefaultActive": true
@@ -272,14 +272,14 @@
       "name": "Wyze Sense Hub (Required)",
       "description": "Connects all your sensors to the app. Required for sensors to function. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "image": "/assets/products/sensor-hub.png",
+      "image": "/assets/products/sensor-hub.webp",
       "discount": 100,
       "variants": [
         {
           "id": "sensor-hub-default",
           "label": "Default",
           "swatch": null,
-          "image": "/assets/products/sensor-hub.png",
+          "image": "/assets/products/sensor-hub.webp",
           "price": 29.92,
           "initialQuantity": 1,
           "isDefaultActive": true,
@@ -295,14 +295,14 @@
       "name": "Wyze Sense Entry Sensor",
       "description": "Know the instant a door or window opens. _(placeholder, not in screenshot)_",
       "learnMoreUrl": "#",
-      "image": "/assets/products/sensor-entry.png",
+      "image": "/assets/products/sensor-entry.jpg",
       "discount": 0,
       "variants": [
         {
           "id": "sensor-entry-default",
           "label": "Default",
           "swatch": null,
-          "image": "/assets/products/sensor-entry.png",
+          "image": "/assets/products/sensor-entry.jpg",
           "price": 19.99,
           "initialQuantity": 0,
           "isDefaultActive": true
@@ -316,14 +316,14 @@
       "name": "Wyze MicroSD Card (256GB)",
       "description": "Local backup storage for your camera footage. _(placeholder copy)_",
       "learnMoreUrl": "#",
-      "image": "/assets/products/accessory-microsd.png",
+      "image": "/assets/products/accessory-microsd.webp",
       "discount": 0,
       "variants": [
         {
           "id": "accessory-microsd-default",
           "label": "Default",
           "swatch": null,
-          "image": "/assets/products/accessory-microsd.png",
+          "image": "/assets/products/accessory-microsd.webp",
           "price": 20.98,
           "initialQuantity": 2,
           "isDefaultActive": true
@@ -336,14 +336,14 @@
       "name": "Wyze Cam Spare Battery",
       "description": "A charged backup so your battery cams never go dark. _(placeholder, not in screenshot)_",
       "learnMoreUrl": "#",
-      "image": "/assets/products/accessory-battery.png",
+      "image": "/assets/products/accessory-battery.webp",
       "discount": 0,
       "variants": [
         {
           "id": "accessory-extra-battery-default",
           "label": "Default",
           "swatch": null,
-          "image": "/assets/products/accessory-battery.png",
+          "image": "/assets/products/accessory-battery.webp",
           "price": 24.99,
           "initialQuantity": 0,
           "isDefaultActive": true

@@ -42,14 +42,14 @@ function ProductCard({ product }: ProductCardProps) {
     <article className={`product-card${isSelected ? " is-selected" : ""}`}>
       <div className="product-card__media" aria-hidden="true">
         <img alt="" src={product.image} />
+        {hasDiscount ? (
+          <span className="badge">Save {product.discount}%</span>
+        ) : null}
       </div>
 
       <div className="product-card__body">
         <div className="product-card__header">
           <h3>{product.name}</h3>
-          {hasDiscount ? (
-            <span className="badge">Save {product.discount}%</span>
-          ) : null}
         </div>
 
         <p>{product.description}</p>
