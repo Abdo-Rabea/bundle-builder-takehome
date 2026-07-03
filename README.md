@@ -1,6 +1,12 @@
 # Bundle Builder
 
-A two-column security system bundle builder built with React, TypeScript, and Zustand.
+Configure your security system step by step — pick cameras, a plan, sensors, and accessories, and watch your order summary update live. Built with React, TypeScript, and Zustand.
+
+## Demo
+
+[Live Demo link](https://bundle-builder-takehome.vercel.app/)
+
+[![Screenshot](./public/screenshot.png)](https://bundle-builder-takehome.vercel.app/)
 
 ## Quick Start
 
